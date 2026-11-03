@@ -1,0 +1,763 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PickMe｜畫畫沒靈感拉霸機</title>
+<link rel="stylesheet" href="../tool-transition.css">
+<script src="../tool-transition.js"></script>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --pink: #f58ba8;
+    --deep-pink: #d95e83;
+    --light-pink: #fff0f4;
+    --border-pink: #f5c4d2;
+    --cream: #fffaf0;
+    --gold: #d8ad69;
+    --brown: #896174;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    padding: 35px 12px;
+    background:
+        radial-gradient(circle at 10% 15%, #ffffff 0 2px, transparent 3px),
+        radial-gradient(circle at 90% 80%, #ffffff 0 3px, transparent 4px),
+        #ffeef2;
+    background-size: 42px 42px, 55px 55px;
+    font-family: "Microsoft JhengHei", sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--brown);
+    overflow-x: hidden;
+}
+
+h1 {
+    color: #e87598;
+    font-size: clamp(25px, 5vw, 36px);
+    letter-spacing: 3px;
+    margin: 0 0 8px;
+    text-shadow: 2px 3px 0 white;
+    text-align: center;
+}
+
+.subtitle {
+    color: #bd8197;
+    font-size: 11px;
+    letter-spacing: 4px;
+    margin-bottom: 35px;
+}
+
+/* ===== 機台整體 ===== */
+
+.wrapper {
+    width: 100%;
+    max-width: 660px;
+    padding-right: 75px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    zoom: 1.15;
+}
+
+.machine {
+    position: relative;
+    width: 100%;
+    background: linear-gradient(145deg, #ffffff, #fff9fb);
+    border: 5px solid #f4c3d1;
+    border-radius: 36px;
+    padding: 18px;
+    box-shadow:
+        0 13px 0 #e8aabd,
+        0 20px 35px rgba(184, 105, 135, 0.22),
+        inset 0 0 0 3px white;
+    z-index: 2;
+}
+
+/* 機台內框 */
+
+.machine-inner {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg, #fff1f5, #ffe8ef);
+    border: 2px solid #f5c5d4;
+    border-radius: 25px;
+    padding: 22px 17px 20px;
+}
+
+/* 角落裝飾 */
+
+.corner {
+    position: absolute;
+    width: 34px;
+    height: 34px;
+    border: 2px solid #e9b4c5;
+    opacity: .75;
+}
+
+.corner::after {
+    content: "";
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    background: #e9b4c5;
+    border-radius: 50%;
+}
+
+.corner.tl {
+    top: 8px;
+    left: 8px;
+    border-right: 0;
+    border-bottom: 0;
+    border-radius: 12px 0 0 0;
+}
+
+.corner.tr {
+    top: 8px;
+    right: 8px;
+    border-left: 0;
+    border-bottom: 0;
+    border-radius: 0 12px 0 0;
+}
+
+.corner.bl {
+    bottom: 8px;
+    left: 8px;
+    border-right: 0;
+    border-top: 0;
+    border-radius: 0 0 0 12px;
+}
+
+.corner.br {
+    bottom: 8px;
+    right: 8px;
+    border-left: 0;
+    border-top: 0;
+    border-radius: 0 0 12px 0;
+}
+
+/* ===== 頂部裝飾 ===== */
+
+.top-decoration {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 8px;
+}
+
+.top-decoration .line {
+    height: 2px;
+    width: 45px;
+    background: #e9b6c6;
+}
+
+.top-star {
+    color: #d7a75e;
+    font-size: 15px;
+}
+
+/* 裝飾燈泡 */
+
+.light-row {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin: 17px 0 15px;
+}
+
+.light {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #f5c66e;
+    border: 2px solid white;
+    box-shadow: 0 0 5px #f6d78e;
+}
+
+.light:nth-child(even) {
+    background: #ffffff;
+}
+
+/* ===== 滾輪區 ===== */
+
+.reels-container {
+    position: relative;
+    display: flex;
+    gap: clamp(7px, 2.5vw, 15px);
+    justify-content: center;
+    align-items: center;
+    padding: clamp(13px, 3vw, 20px);
+    background: linear-gradient(180deg, #fffdfc, #fff7f8);
+    border: 4px solid #eab6c8;
+    border-radius: 22px;
+    box-shadow:
+        inset 0 4px 10px rgba(176, 110, 135, .12),
+        0 4px 0 #f4d4df;
+    margin-bottom: 15px;
+}
+
+.reels-container::before,
+.reels-container::after {
+    content: "✦";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #d8ad69;
+    font-size: 14px;
+}
+
+.reels-container::before {
+    left: 5px;
+}
+
+.reels-container::after {
+    right: 5px;
+}
+
+.reel-window {
+    flex: 1;
+    min-width: 0;
+    max-width: 125px;
+    aspect-ratio: 1 / 1;
+    background: linear-gradient(145deg, #fffaf5, #fff0f3);
+    border: 3px solid #f0c4d0;
+    border-radius: 17px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    box-shadow:
+        inset 0 3px 9px rgba(176, 110, 135, .12),
+        0 3px 0 #f7dce5;
+    position: relative;
+}
+
+.reel-window::after {
+    content: "";
+    position: absolute;
+    inset: 5px;
+    border: 1px solid rgba(230, 176, 193, .35);
+    border-radius: 10px;
+    pointer-events: none;
+}
+
+/* 純文字轉輪 */
+
+.symbol {
+    width: 90%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.symbol-label {
+    font-size: clamp(18px, 3.7vw, 28px);
+    font-weight: bold;
+    color: #896174;
+    text-align: center;
+    white-space: normal;
+    max-width: 2em;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+}
+
+.wrapper.spinning .symbol {
+    animation: symbolFlash .12s infinite alternate;
+}
+
+@keyframes symbolFlash {
+    from {
+        transform: translateY(-5px) scale(.94);
+        opacity: .75;
+    }
+    to {
+        transform: translateY(5px) scale(1.04);
+        opacity: 1;
+    }
+}
+
+/* ===== 分隔裝飾 ===== */
+
+.divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 18px 0;
+    color: #d7a75e;
+    font-size: 12px;
+    letter-spacing: 3px;
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+    width: 55px;
+    height: 1px;
+    background: #e8b8c7;
+}
+
+/* ===== 訊息區 ===== */
+
+.message {
+    min-height: 46px;
+    margin-top: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 3px;
+    text-align: center;
+    color: #d9577b;
+    font-weight: bold;
+    font-size: clamp(14px, 3.5vw, 19px);
+    letter-spacing: 1px;
+}
+
+/* ===== 五個結果元素同步跳動 ===== */
+
+.result-bounce {
+    display: inline-block;
+    color: #d9577b;
+    animation: resultBounce .6s ease-in-out infinite alternate;
+    animation-delay: 0s;
+}
+
+@keyframes resultBounce {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-10px);
+    }
+}
+
+/* 結果容器固定不動 */
+
+.message.win {
+    animation: none;
+}
+
+/* ===== 實體拉桿 ===== */
+
+.handle-container {
+    position: absolute;
+    right: 0;
+    top: 34%;
+    width: 75px;
+    height: 190px;
+    cursor: grab;
+    z-index: 3;
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.handle-container:active {
+    cursor: grabbing;
+}
+
+.handle-base {
+    position: absolute;
+    left: 0;
+    top: 80px;
+    width: 30px;
+    height: 43px;
+    border: 3px solid #ffffff;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #f8c2d1, #df94ac);
+    box-shadow:
+        0 4px 0 #d78ba5,
+        0 5px 8px rgba(120, 75, 90, .15);
+}
+
+.handle-rod {
+    position: absolute;
+    left: 12px;
+    bottom: 82px;
+    width: 13px;
+    height: 95px;
+    border: 1px solid #d6c1c5;
+    border-radius: 10px;
+    background: linear-gradient(
+        90deg,
+        #c8b8bd,
+        #ffffff 35%,
+        #e4d5d9 75%,
+        #bca9af
+    );
+
+    transform-origin: bottom center;
+    transition: transform .35s cubic-bezier(.25, 1, .5, 1);
+
+    box-shadow: 2px 3px 5px rgba(90, 65, 75, .2);
+}
+
+.handle-container.dragging .handle-rod {
+    transition: none;
+}
+
+.handle-ball {
+    position: absolute;
+    top: -25px;
+    left: -17px;
+    width: 46px;
+    height: 46px;
+    border: 3px solid white;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 32% 25%, #fff8fb 0 8%, transparent 10%),
+        radial-gradient(circle at 35% 30%, #ffcfdd, #f27f9f 60%, #d95e83);
+    box-shadow:
+        0 4px 0 #d65e82,
+        0 6px 12px rgba(210, 90, 125, .3),
+        inset 0 2px 5px rgba(255,255,255,.8);
+}
+
+/* 拉霸時拉桿轉動 */
+
+.wrapper.spinning .handle-rod {
+    transform: rotate(32deg);
+}
+
+.wrapper.spinning .handle-container {
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+/* ===== 手機版 ===== */
+
+@media (max-width: 480px) {
+    body {
+        padding: 25px 8px;
+    }
+
+    .wrapper {
+        padding-right: 48px;
+        zoom: 1.05;
+    }
+
+    .machine {
+        padding: 11px;
+        border-radius: 27px;
+    }
+
+    .machine-inner {
+        padding: 17px 9px;
+    }
+
+    .handle-container {
+        transform: scale(.76);
+        transform-origin: right center;
+    }
+
+    .reels-container {
+        padding: 12px 9px;
+    }
+
+    .reel-window {
+        border-radius: 12px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrapper" id="gameWrapper">
+
+    <div class="machine">
+
+        <div class="machine-inner">
+
+            <div class="corner tl"></div>
+            <div class="corner tr"></div>
+            <div class="corner bl"></div>
+            <div class="corner br"></div>
+
+            <div class="top-decoration">
+                <span class="line"></span>
+                <span class="top-star">✦</span>
+                <span class="top-star">✧</span>
+                <span class="top-star">✦</span>
+                <span class="line"></span>
+            </div>
+
+            <div class="light-row">
+                <div class="light"></div>
+                <div class="light"></div>
+                <div class="light"></div>
+                <div class="light"></div>
+                <div class="light"></div>
+                <div class="light"></div>
+                <div class="light"></div>
+                <div class="light"></div>
+                <div class="light"></div>
+            </div>
+
+            <div class="reels-container">
+                <div class="reel-window">
+                    <div class="symbol" id="reel1"></div>
+                </div>
+
+                <div class="reel-window">
+                    <div class="symbol" id="reel2"></div>
+                </div>
+
+                <div class="reel-window">
+                    <div class="symbol" id="reel3"></div>
+                </div>
+            </div>
+
+            <div class="divider"> CHOOSE YOUR CHARACTER </div>
+
+            <div class="message" id="msg">
+                READY TO PLAY
+            </div>
+
+        </div>
+    </div>
+
+    <div class="handle-container" id="handle">
+        <div class="handle-base"></div>
+        <div class="handle-rod">
+            <div class="handle-ball"></div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+
+/* ===== 三組抽選資料 ===== */
+
+const species = [
+    "狗", "貓", "兔子", "人", "狐狸",
+    "鳥", "蛇", "羊", "馬", "獅子"
+];
+
+const colors = [
+    "紅色", "橙色", "黃色", "綠色", "藍色",
+    "紫色", "棕色", "黑色", "白色", "灰色"
+];
+
+const accessories = [
+    "翅膀", "角", "獠牙", "利爪", "鱗片",
+    "觸手", "星形瞳孔", "魔力", "尾巴", "星雲皮毛"
+];
+
+const groups = [species, colors, accessories];
+
+/* ===== DOM ===== */
+
+const msg = document.getElementById("msg");
+const wrapper = document.getElementById("gameWrapper");
+const handle = document.getElementById("handle");
+const rod = handle.querySelector(".handle-rod");
+
+const reels = [
+    document.getElementById("reel1"),
+    document.getElementById("reel2"),
+    document.getElementById("reel3")
+];
+
+let spinning = false;
+let intervals = [];
+let stopTimers = [];
+
+/* ===== 隨機選項 ===== */
+
+function randomItem(list) {
+    return list[Math.floor(Math.random() * list.length)];
+}
+
+/* ===== 顯示轉輪文字 ===== */
+
+function showItem(index, value) {
+    const label = document.createElement("div");
+    label.className = "symbol-label";
+    label.textContent = value;
+
+    reels[index].replaceChildren(label);
+}
+
+/* ===== 初始化 ===== */
+
+function init() {
+    showItem(0, "物種");
+    showItem(1, "顏色");
+    showItem(2, "特色");
+}
+
+init();
+
+/* ===== 開始拉霸 ===== */
+
+function spin() {
+
+    if (spinning) return;
+
+    spinning = true;
+
+    wrapper.classList.add("spinning");
+
+    msg.classList.remove("win");
+    msg.textContent = "角色組合生成中...";
+    msg.style.color = "#ed7295";
+
+    intervals = [];
+    stopTimers = [];
+
+    const results = [null, null, null];
+
+    // 三個轉輪開始快速變換
+    reels.forEach((reel, index) => {
+
+        intervals[index] = setInterval(() => {
+
+            const value = randomItem(groups[index]);
+            showItem(index, value);
+
+        }, 75);
+
+    });
+
+    // 三個轉輪依序停止
+    reels.forEach((reel, index) => {
+
+        const stopTime = 4000 + index * 500;
+
+        stopTimers[index] = setTimeout(() => {
+
+            clearInterval(intervals[index]);
+
+            const finalValue = randomItem(groups[index]);
+
+            results[index] = finalValue;
+
+            showItem(index, finalValue);
+
+            // 全部停止後顯示結果
+            if (results.every(value => value !== null)) {
+
+                wrapper.classList.remove("spinning");
+
+                showResult(results);
+
+            }
+
+        }, stopTime);
+
+    });
+
+}
+
+/* ===== 抽選完成 ===== */
+
+function showResult(results) {
+
+    spinning = false;
+
+    const [speciesResult, colorResult, accessoryResult] = results;
+
+    // 五個元素全部同步跳動
+    msg.innerHTML = `
+        <span class="result-bounce">${speciesResult}</span>
+        <span class="result-bounce">×</span>
+        <span class="result-bounce">${colorResult}</span>
+        <span class="result-bounce">×</span>
+        <span class="result-bounce">${accessoryResult}</span>
+    `;
+
+    msg.style.color = "#d9577b";
+
+    msg.classList.add("win");
+
+}
+
+/* ===== 實體拉桿操作 ===== */
+
+let isDragging = false;
+let startY = 0;
+
+const maxPullDistance = 55;
+const maxPullAngle = 30;
+
+handle.addEventListener("pointerdown", function(e) {
+
+    if (spinning || isDragging) return;
+
+    e.preventDefault();
+
+    isDragging = true;
+    startY = e.clientY;
+
+    handle.classList.add("dragging");
+
+    handle.setPointerCapture(e.pointerId);
+
+});
+
+handle.addEventListener("pointermove", function(e) {
+
+    if (!isDragging || spinning) return;
+
+    e.preventDefault();
+
+    const distance = e.clientY - startY;
+
+    const pullDistance = Math.max(
+        0,
+        Math.min(distance, maxPullDistance)
+    );
+
+    const angle =
+        (pullDistance / maxPullDistance) * maxPullAngle;
+
+    rod.style.transform = `rotate(${angle}deg)`;
+
+});
+
+handle.addEventListener("pointerup", function() {
+
+    if (!isDragging) return;
+
+    isDragging = false;
+
+    handle.classList.remove("dragging");
+
+    rod.style.transform = "";
+
+    if (!spinning) {
+        spin();
+    }
+
+});
+
+handle.addEventListener("pointercancel", function() {
+
+    isDragging = false;
+
+    handle.classList.remove("dragging");
+
+    rod.style.transform = "";
+
+});
+
+</script>
+
+</body>
+</html>

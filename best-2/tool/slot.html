@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --pink: #f58ba8;
+    --deep-pink: #d95e83;
+    --light-pink: #fff0f4;
+    --border-pink: #f5c4d2;
+    --cream: #fffaf0;
+    --gold: #d8ad69;
+    --brown: #896174;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    padding: 35px 12px;
+    background:
+        radial-gradient(circle at 10% 15%, #ffffff 0 2px, transparent 3px),
+        radial-gradient(circle at 90% 80%, #ffffff 0 3px, transparent 4px),
+        #ffeef2;
+    background-size: 42px 42px, 55px 55px;
+    font-family: "Microsoft JhengHei", sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--brown);
+    overflow-x: hidden;
+}
+
+h1 {
+    color: #e87598;
+    font-size: clamp(25px, 5vw, 36px);
+    letter-spacing: 3px;
+    margin: 0 0 8px;
+    text-shadow: 2px 3px 0 white;
+    text-align: center;
+}
+
+.subtitle {
+    color: #bd8197;
+    font-size: 11px;
+    letter-spacing: 4px;
+    margin-bottom: 35px;
+}
+
+/* ===== 機台整體 ===== */
+
+.wrapper {
+    width: 100%;
+    max-width: 660px;
+    padding-right: 75px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.machine {
+    position: relative;
+    width: 100%;
+    background: linear-gradient(145deg, #ffffff, #fff9fb);
+    border: 5px solid #f4c3d1;
+    border-radius: 36px;
+    padding: 18px;
+    box-shadow:
+        0 13px 0 #e8aabd,
+        0 20px 35px rgba(184, 105, 135, 0.22),
+        inset 0 0 0 3px white;
+    z-index: 2;
+}
+
+/* 機台內框 */
+
+.machine-inner {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg, #fff1f5, #ffe8ef);
+    border: 2px solid #f5c5d4;
+    border-radius: 25px;
+    padding: 22px 17px 20px;
+}
+
+/* 角落裝飾 */
+
+.corner {
+    position: absolute;
+    width: 34px;
+    height: 34px;
+    border: 2px solid #e9b4c5;
+    opacity: .75;
+}
+
+.corner::after {
+    content: "";
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    background: #e9b4c5;
+    border-radius: 50%;
+}
+
+.corner.tl {
+    top: 8px;
+    left: 8px;
+    border-right: 0;
+    border-bottom: 0;
+    border-radius: 12px 0 0 0;
+}
+
+.corner.tr {
+    top: 8px;
+    right: 8px;
+    border-left: 0;
+    border-bottom: 0;
+    border-radius: 0 12px 0 0;
+}
+
+.corner.bl {
+    bottom: 8px;
+    left: 8px;
+    border-right: 0;
+    border-top: 0;
+    border-radius: 0 0 0 12px;
+}
+
+.corner.br {
+    bottom: 8px;
+    right: 8px;
+    border-left: 0;
+    border-top: 0;
+    border-radius: 0 0 12px 0;
+}
+
+/* ===== 頂部招牌 ===== */
+
+.top-decoration {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 8px;
+}
+
+.top-decoration .line {
+    height: 2px;
+    width: 45px;
+    background: #e9b6c6;
+}
+
+.top-star {
+    color: #d7a75e;
+    font-size: 15px;
+}
+
+.machine-header {
+    position: relative;
+    background: linear-gradient(135deg, #f7a4b9, #e982a0);
+    border: 3px solid #ffffff;
+    outline: 1px solid #eab0c2;
+    border-radius: 18px 18px 12px 12px;
+    padding: 15px 8px 13px;
+    margin-bottom: 18px;
+    color: #fffdfd;
+    text-align: center;
+    box-shadow:
+        0 5px 0 #e6a0b5,
+        inset 0 2px 5px rgba(255,255,255,.4);
+}
+
+.header-small {
+    font-family: Georgia, serif;
+    font-size: 9px;
+    letter-spacing: 4px;
+    opacity: .9;
+    margin-bottom: 5px;
+}
+
+.header-title {
+    font-family: Georgia, "Microsoft JhengHei", serif;
+    font-size: clamp(18px, 4vw, 25px);
+    font-weight: bold;
+    letter-spacing: 4px;
+    text-shadow: 1px 2px 2px rgba(174, 76, 108, .2);
+}
+
+.header-bottom {
+    font-size: 9px;
+    letter-spacing: 3px;
+    margin-top: 5px;
+    opacity: .9;
+}
+
+/* 裝飾燈泡 */
+
+.light-row {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin: 17px 0 15px;
+}
+
+.light {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #f5c66e;
+    border: 2px solid white;
+    box-shadow: 0 0 5px #f6d78e;
+}
+
+.light:nth-child(even) {
+    background: #ffffff;
+}
+
+/* ===== 滾輪區 ===== */
+
+.reels-container {
+    position: relative;
+    display: flex;
+    gap: clamp(7px, 2.5vw, 15px);
+    justify-content: center;
+    align-items: center;
+    padding: clamp(13px, 3vw, 20px);
+    background: linear-gradient(180deg, #fffdfc, #fff7f8);
+    border: 4px solid #eab6c8;
+    border-radius: 22px;
+    box-shadow:
+        inset 0 4px 10px rgba(176, 110, 135, .12),
+        0 4px 0 #f4d4df;
+    margin-bottom: 15px;
+}
+
+.reels-container::before,
+.reels-container::after {
+    content: "✦";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #d8ad69;
+    font-size: 14px;
+}
+
+.reels-container::before {
+    left: 5px;
+}
+
+.reels-container::after {
+    right: 5px;
+}
+
+.reel-window {
+    flex: 1;
+    min-width: 0;
+    max-width: 125px;
+    aspect-ratio: 1 / 1;
+    background: linear-gradient(145deg, #fffaf5, #fff0f3);
+    border: 3px solid #f0c4d0;
+    border-radius: 17px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    box-shadow:
+        inset 0 3px 9px rgba(176, 110, 135, .12),
+        0 3px 0 #f7dce5;
+    position: relative;
+}
+
+.reel-window::after {
+    content: "";
+    position: absolute;
+    inset: 5px;
+    border: 1px solid rgba(230, 176, 193, .35);
+    border-radius: 10px;
+    pointer-events: none;
+}
+
+.symbol {
+    width: 76%;
+    height: 76%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform .15s;
+}
+
+.symbol svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    filter: drop-shadow(0 3px 2px rgba(125, 79, 91, .12));
+}
+
+.wrapper.spinning .symbol {
+    animation: symbolFlash .12s infinite alternate;
+}
+
+@keyframes symbolFlash {
+    from {
+        transform: translateY(-5px) scale(.94);
+        opacity: .75;
+    }
+    to {
+        transform: translateY(5px) scale(1.04);
+        opacity: 1;
+    }
+}
+
+/* ===== 分隔裝飾 ===== */
+
+.divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 18px 0;
+    color: #d7a75e;
+    font-size: 12px;
+    letter-spacing: 3px;
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+    width: 55px;
+    height: 1px;
+    background: #e8b8c7;
+}
+
+/* ===== 訊息區 ===== */
+
+.message {
+    min-height: 46px;
+    margin-top: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #d9577b;
+    font-weight: bold;
+    font-size: clamp(14px, 3.5vw, 19px);
+    letter-spacing: 1px;
+}
+
+.message.win {
+    animation: winPulse .6s infinite alternate;
+}
+
+@keyframes winPulse {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.07);
+    }
+}
+
+/* ===== 底部裝飾 ===== */
+
+.bottom-decoration {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 13px;
+    margin-top: 8px;
+    color: #c68ba0;
+    font-family: Georgia, serif;
+    font-size: 9px;
+    letter-spacing: 3px;
+}
+
+.bottom-decoration span {
+    color: #d8ad69;
+    font-size: 14px;
+}
+
+/* ===== 實體拉桿 ===== */
+
+.handle-container {
+    position: absolute;
+    right: 0;
+    top: 34%;
+    width: 75px;
+    height: 190px;
+    cursor: grab;
+    z-index: 3;
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.handle-container:active {
+    cursor: grabbing;
+}
+
+.handle-base {
+    position: absolute;
+    left: 0;
+    top: 80px;
+    width: 30px;
+    height: 43px;
+    border: 3px solid #ffffff;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #f8c2d1, #df94ac);
+    box-shadow:
+        0 4px 0 #d78ba5,
+        0 5px 8px rgba(120, 75, 90, .15);
+}
+
+.handle-rod {
+    position: absolute;
+    left: 12px;
+    bottom: 82px;
+    width: 13px;
+    height: 95px;
+    border: 1px solid #d6c1c5;
+    border-radius: 10px;
+    background: linear-gradient(
+        90deg,
+        #c8b8bd,
+        #ffffff 35%,
+        #e4d5d9 75%,
+        #bca9af
+    );
+
+    /* 固定底部作為旋轉支點 */
+    transform-origin: bottom center;
+
+    transition: transform .35s cubic-bezier(.25, 1, .5, 1);
+
+    box-shadow: 2px 3px 5px rgba(90, 65, 75, .2);
+}
+
+/* 拖曳時取消動畫延遲，讓桿子跟隨滑鼠 */
+.handle-container.dragging .handle-rod {
+    transition: none;
+}
+
+.handle-ball {
+    position: absolute;
+    top: -25px;
+    left: -17px;
+    width: 46px;
+    height: 46px;
+    border: 3px solid white;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 32% 25%, #fff8fb 0 8%, transparent 10%),
+        radial-gradient(circle at 35% 30%, #ffcfdd, #f27f9f 60%, #d95e83);
+    box-shadow:
+        0 4px 0 #d65e82,
+        0 6px 12px rgba(210, 90, 125, .3),
+        inset 0 2px 5px rgba(255,255,255,.8);
+}
+
+/* 拉霸時拉桿轉動 */
+
+.wrapper.spinning .handle-rod {
+    transform: rotate(32deg);
+}
+
+.wrapper.spinning .handle-container {
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+/* ===== 提示 ===== */
+
+.tips {
+    margin-top: 28px;
+    color: #a77b90;
+    font-size: 12px;
+    text-align: center;
+    line-height: 2;
+    letter-spacing: 1px;
+}
+
+.tips strong {
+    color: #d66f91;
+}
+
+/* ===== 中獎裝飾 ===== */
+
+.wrapper.jackpot .machine {
+    animation: jackpotShake .35s infinite alternate;
+}
+
+@keyframes jackpotShake {
+    from {
+        transform: rotate(-.5deg);
+    }
+    to {
+        transform: rotate(.5deg);
+    }
+}
+
+/* ===== 手機版 ===== */
+
+@media (max-width: 480px) {
+    body {
+        padding: 25px 8px;
+    }
+
+    .subtitle {
+        margin-bottom: 25px;
+    }
+
+    .wrapper {
+        padding-right: 48px;
+    }
+
+    .machine {
+        padding: 11px;
+        border-radius: 27px;
+    }
+
+    .machine-inner {
+        padding: 17px 9px;
+    }
+
+    .handle-container {
+        transform: scale(.76);
+        transform-origin: right center;
+    }
+
+    .header-title {
+        letter-spacing: 2px;
+    }
+
+    .reels-container {
+        padding: 12px 9px;
+    }
+
+    .reel-window {
+        border-radius: 12px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+
+<div class="wrapper" id="gameWrapper">
+
+    <div class="machine">
+
+        <div class="machine-inner">
+
+            <div class="corner tl"></div>
+            <div class="corner tr"></div>
+            <div class="corner bl"></div>
+            <div class="corner br"></div>
+
+            <div class="top-decoration">
+                <span class="line"></span>
+                <span class="top-star">✦</span>
+                <span class="top-star">✧</span>
+                <span class="top-star">✦</span>
+                <span class="line"></span>
+            </div>
+
+
+
+            <div class="light-row">
+                <div class="light"></div>
+                <div class="light"></div>
+                <div class="light"></div>
+                <div class="light"></div>
+                <div class="light"></div>
+                <div class="light"></div>
+                <div class="light"></div>
+                <div class="light"></div>
+                <div class="light"></div>
+            </div>
+
+            <div class="reels-container">
+                <div class="reel-window">
+                    <div class="symbol" id="reel1"></div>
+                </div>
+
+                <div class="reel-window">
+                    <div class="symbol" id="reel2"></div>
+                </div>
+
+                <div class="reel-window">
+                    <div class="symbol" id="reel3"></div>
+                </div>
+            </div>
+
+            <div class="divider">GOOD LUCK</div>
+
+            <div class="message" id="msg">
+                READY TO PLAY
+            </div>
+
+
+
+        </div>
+    </div>
+
+    <div class="handle-container" id="handle">
+        <div class="handle-base"></div>
+        <div class="handle-rod">
+            <div class="handle-ball"></div>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- ===== SVG 插畫素材庫 ===== -->
+
+<svg xmlns="http://www.w3.org/2000/svg"
+     style="position:absolute;width:0;height:0;overflow:hidden"
+     aria-hidden="true">
+
+<defs>
+
+    <linearGradient id="redFruit" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#ff9b9e"/>
+        <stop offset="1" stop-color="#e84f70"/>
+    </linearGradient>
+
+    <linearGradient id="pinkFruit" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#ffc5d4"/>
+        <stop offset="1" stop-color="#f27eaa"/>
+    </linearGradient>
+
+    <linearGradient id="yellowFruit" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#fff1a8"/>
+        <stop offset="1" stop-color="#f3bc50"/>
+    </linearGradient>
+
+    <linearGradient id="purpleFruit" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#d9b6ed"/>
+        <stop offset="1" stop-color="#9870c5"/>
+    </linearGradient>
+
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#fff0b0"/>
+        <stop offset="1" stop-color="#d9a64e"/>
+    </linearGradient>
+
+    <linearGradient id="gem" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#d9ffff"/>
+        <stop offset=".5" stop-color="#8ed9e8"/>
+        <stop offset="1" stop-color="#75a6d5"/>
+    </linearGradient>
+
+    <!-- 櫻桃 -->
+    <symbol id="cherry" viewBox="0 0 100 100">
+        <path d="M48 43 C48 25 35 19 31 9 M51 42 C55 23 71 21 75 10"
+              fill="none" stroke="#638d60" stroke-width="5"
+              stroke-linecap="round"/>
+        <path d="M51 25 C60 8 78 8 83 22 C71 30 60 31 51 25Z"
+              fill="#8dbb79" stroke="#668d5d" stroke-width="2"/>
+        <circle cx="34" cy="62" r="23" fill="url(#redFruit)"
+                stroke="#bf4d65" stroke-width="3"/>
+        <circle cx="69" cy="62" r="23" fill="url(#redFruit)"
+                stroke="#bf4d65" stroke-width="3"/>
+        <ellipse cx="26" cy="50" rx="6" ry="10" fill="#fff" opacity=".55"/>
+        <ellipse cx="61" cy="50" rx="6" ry="10" fill="#fff" opacity=".55"/>
+        <path d="M29 75 Q34 80 39 75 M64 75 Q69 80 74 75"
+              fill="none" stroke="#b84e67" stroke-width="2"/>
+    </symbol>
+
+    <!-- 草莓 -->
+    <symbol id="strawberry" viewBox="0 0 100 100">
+        <path d="M50 25 C20 15 10 39 24 62 C32 78 43 91 50 94 C58 91 72 77 80 60 C93 35 78 15 50 25Z"
+              fill="url(#redFruit)" stroke="#c64f6c" stroke-width="3"/>
+        <path d="M50 30 C36 9 24 18 25 30 C34 28 40 34 50 30 C61 34 69 27 78 30 C77 15 62 10 50 30Z"
+              fill="#84b879" stroke="#638f62" stroke-width="2"/>
+        <g fill="#ffe7a6">
+            <ellipse cx="34" cy="44" rx="2.3" ry="4"/>
+            <ellipse cx="52" cy="42" rx="2.3" ry="4"/>
+            <ellipse cx="68" cy="45" rx="2.3" ry="4"/>
+            <ellipse cx="42" cy="59" rx="2.3" ry="4"/>
+            <ellipse cx="59" cy="59" rx="2.3" ry="4"/>
+            <ellipse cx="50" cy="75" rx="2.3" ry="4"/>
+        </g>
+        <ellipse cx="33" cy="39" rx="5" ry="8" fill="#fff" opacity=".35"/>
+    </symbol>
+
+    <!-- 檸檬 -->
+    <symbol id="lemon" viewBox="0 0 100 100">
+        <path d="M18 52 C30 25 66 18 82 42 C96 63 69 82 43 81 C20 80 5 67 18 52Z"
+              fill="url(#yellowFruit)" stroke="#d5a13e" stroke-width="3"/>
+        <path d="M17 53 L9 47 L16 39 M82 43 L91 38 L87 50"
+              fill="none" stroke="#d5a13e" stroke-width="3"
+              stroke-linecap="round"/>
+        <path d="M51 27 Q61 12 75 18 Q68 30 51 27Z"
+              fill="#89b77c" stroke="#648f62" stroke-width="2"/>
+        <ellipse cx="37" cy="42" rx="8" ry="4"
+                 fill="#fff" opacity=".55" transform="rotate(-25 37 42)"/>
+        <path d="M30 63 Q50 73 68 59"
+              fill="none" stroke="#e6b34e" stroke-width="2" opacity=".6"/>
+    </symbol>
+
+    <!-- 葡萄 -->
+    <symbol id="grape" viewBox="0 0 100 100">
+        <path d="M47 26 Q48 12 64 12" fill="none"
+              stroke="#6b8d5b" stroke-width="4" stroke-linecap="round"/>
+        <path d="M60 15 Q77 5 86 19 Q72 30 60 15Z"
+              fill="#8bbd7d"/>
+        <g fill="url(#purpleFruit)" stroke="#8962af" stroke-width="2">
+            <circle cx="39" cy="37" r="15"/>
+            <circle cx="62" cy="37" r="15"/>
+            <circle cx="27" cy="58" r="15"/>
+            <circle cx="51" cy="59" r="15"/>
+            <circle cx="74" cy="59" r="15"/>
+            <circle cx="39" cy="80" r="14"/>
+            <circle cx="62" cy="80" r="14"/>
+        </g>
+        <g fill="#fff" opacity=".4">
+            <circle cx="34" cy="31" r="4"/>
+            <circle cx="57" cy="31" r="4"/>
+            <circle cx="22" cy="52" r="4"/>
+        </g>
+    </symbol>
+
+    <!-- 橘子 -->
+    <symbol id="orange" viewBox="0 0 100 100">
+        <circle cx="50" cy="54" r="35" fill="#ffb66d"
+                stroke="#df8b45" stroke-width="3"/>
+        <path d="M50 19 Q48 10 58 8" fill="none"
+              stroke="#718f57" stroke-width="4" stroke-linecap="round"/>
+        <path d="M53 17 Q70 4 81 18 Q67 28 53 17Z"
+              fill="#8bb77a" stroke="#6b945f" stroke-width="2"/>
+        <path d="M28 42 Q39 29 50 32" fill="none"
+              stroke="#fff1c8" stroke-width="5"
+              stroke-linecap="round" opacity=".7"/>
+        <path d="M39 64 Q50 73 62 64" fill="none"
+              stroke="#d98a4c" stroke-width="2"/>
+    </symbol>
+
+    <!-- 西瓜 -->
+    <symbol id="watermelon" viewBox="0 0 100 100">
+        <path d="M14 67 A38 38 0 0 1 86 67 Z"
+              fill="#f47d8c" stroke="#d85b70" stroke-width="3"/>
+        <path d="M12 67 Q50 89 88 67"
+              fill="none" stroke="#6f9c68" stroke-width="8"/>
+        <path d="M17 67 Q50 82 83 67"
+              fill="none" stroke="#c0d98b" stroke-width="4"/>
+        <g fill="#72536a">
+            <ellipse cx="36" cy="54" rx="2.5" ry="5" transform="rotate(-20 36 54)"/>
+            <ellipse cx="51" cy="46" rx="2.5" ry="5"/>
+            <ellipse cx="65" cy="55" rx="2.5" ry="5" transform="rotate(20 65 55)"/>
+        </g>
+    </symbol>
+
+    <!-- 鳳梨 -->
+    <symbol id="pineapple" viewBox="0 0 100 100">
+        <path d="M50 39 Q19 21 31 5 Q48 12 50 35 Q57 8 75 6 Q77 25 52 40"
+              fill="#8ab87a" stroke="#628d5e" stroke-width="2"/>
+        <path d="M50 26 Q25 8 18 24 Q35 39 50 35"
+              fill="#a0c98c" stroke="#628d5e" stroke-width="2"/>
+        <path d="M26 38 Q50 23 75 39 L70 81 Q50 96 30 81Z"
+              fill="url(#yellowFruit)" stroke="#d4a447" stroke-width="3"/>
+        <path d="M30 46 L68 74 M37 35 L74 63 M26 61 L63 88
+                 M68 43 L33 77 M73 59 L48 88"
+              stroke="#d5a34d" stroke-width="2" fill="none"/>
+    </symbol>
+
+    <!-- 鈴鐺 -->
+    <symbol id="bell" viewBox="0 0 100 100">
+        <path d="M50 16 C31 16 27 33 27 48 L21 69 Q20 76 31 76 H69 Q80 76 79 69 L73 48 C73 33 69 16 50 16Z"
+              fill="url(#gold)" stroke="#c2964d" stroke-width="3"/>
+        <path d="M40 17 Q50 5 60 17" fill="none"
+              stroke="#c2964d" stroke-width="4" stroke-linecap="round"/>
+        <path d="M17 78 Q50 88 83 78"
+              fill="none" stroke="#c2964d" stroke-width="4"
+              stroke-linecap="round"/>
+        <circle cx="50" cy="84" r="7" fill="#d5a34d"
+                stroke="#b88a42" stroke-width="2"/>
+        <path d="M37 35 Q42 26 48 28" fill="none"
+              stroke="#fff9d9" stroke-width="5"
+              stroke-linecap="round"/>
+    </symbol>
+
+    <!-- 寶石 -->
+    <symbol id="diamond" viewBox="0 0 100 100">
+        <path d="M15 36 L33 15 H68 L86 36 L50 88Z"
+              fill="url(#gem)" stroke="#6daac0" stroke-width="3"
+              stroke-linejoin="round"/>
+        <path d="M15 36 H86 M33 15 L42 36 L50 88
+                 M68 15 L58 36"
+              fill="none" stroke="#ffffff" stroke-width="3"
+              opacity=".8"/>
+        <path d="M15 36 L42 36 L50 88Z"
+              fill="#ffffff" opacity=".2"/>
+        <path d="M33 15 L42 36 L50 15Z"
+              fill="#ffffff" opacity=".65"/>
+    </symbol>
+
+    <!-- 皇冠 -->
+    <symbol id="crown" viewBox="0 0 100 100">
+        <path d="M17 35 L34 52 L50 19 L67 52 L84 35 L77 76 H24Z"
+              fill="url(#gold)" stroke="#bd914d" stroke-width="3"
+              stroke-linejoin="round"/>
+        <path d="M24 77 H77 V85 H24Z"
+              fill="#f1c86d" stroke="#bd914d" stroke-width="2"/>
+        <g fill="#ed8da7">
+            <circle cx="17" cy="33" r="7"/>
+            <circle cx="50" cy="16" r="7"/>
+            <circle cx="84" cy="33" r="7"/>
+        </g>
+        <path d="M36 60 H64" stroke="#fff5d2"
+              stroke-width="4" stroke-linecap="round"/>
+    </symbol>
+
+    <!-- 四葉草 -->
+    <symbol id="clover" viewBox="0 0 100 100">
+        <g fill="#94c88b" stroke="#639b69" stroke-width="2">
+            <path d="M50 48 C25 48 22 21 40 17 C53 14 58 31 50 48Z"/>
+            <path d="M52 48 C52 22 79 20 83 38 C86 51 68 58 52 48Z"/>
+            <path d="M52 51 C78 51 78 78 60 83 C47 86 42 68 52 51Z"/>
+            <path d="M48 51 C48 77 21 79 17 61 C14 48 32 42 48 51Z"/>
+        </g>
+        <path d="M51 52 Q50 72 35 89" fill="none"
+              stroke="#6f9d67" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="50" cy="50" r="4" fill="#d8edb7"/>
+    </symbol>
+
+    <!-- 蝴蝶結 -->
+    <symbol id="bow" viewBox="0 0 100 100">
+        <path d="M47 47 C22 12 7 26 17 53 C24 72 38 62 49 54Z"
+              fill="url(#pinkFruit)" stroke="#dc7899" stroke-width="3"/>
+        <path d="M53 47 C78 12 93 26 83 53 C76 72 62 62 51 54Z"
+              fill="url(#pinkFruit)" stroke="#dc7899" stroke-width="3"/>
+        <path d="M43 55 L35 89 L52 73 L65 89 L57 55"
+              fill="#eea1b8" stroke="#dc7899" stroke-width="3"/>
+        <circle cx="50" cy="50" r="10" fill="#fff0f4"
+                stroke="#d87598" stroke-width="3"/>
+        <circle cx="47" cy="47" r="3" fill="#ffffff"/>
+    </symbol>
+
+    <!-- 星星 -->
+    <symbol id="star" viewBox="0 0 100 100">
+        <path d="M50 7 L62 36 L94 39 L70 60 L77 92
+                 L50 75 L23 92 L30 60 L6 39 L38 36Z"
+              fill="url(#gold)" stroke="#c69a50" stroke-width="3"
+              stroke-linejoin="round"/>
+        <path d="M50 19 L57 41 L79 43 L62 57 L67 79
+                 L50 67 L33 79 L38 57 L21 43 L43 41Z"
+              fill="#ffeeb6" opacity=".45"/>
+        <circle cx="50" cy="48" r="5" fill="#ffffff" opacity=".8"/>
+    </symbol>
+
+</defs>
+</svg>
+
+<script>
+/* ===== 圖案資料 ===== */
+
+const symbols = [
+    "cherry",
+    "strawberry",
+    "lemon",
+    "grape",
+    "orange",
+    "watermelon",
+    "pineapple",
+    "bell",
+    "diamond",
+    "crown",
+    "clover",
+    "bow",
+    "star"
+];
+
+const symbolNames = {
+    cherry: "櫻桃",
+    strawberry: "草莓",
+    lemon: "檸檬",
+    grape: "葡萄",
+    orange: "橘子",
+    watermelon: "西瓜",
+    pineapple: "鳳梨",
+    bell: "幸運鈴鐺",
+    diamond: "寶石",
+    crown: "皇冠",
+    clover: "四葉草",
+    bow: "蝴蝶結",
+    star: "幸運星"
+};
+
+/* ===== DOM ===== */
+
+const msg = document.getElementById("msg");
+const wrapper = document.getElementById("gameWrapper");
+const handle = document.getElementById("handle");
+
+const rod = handle.querySelector(".handle-rod");
+
+const reels = [
+    document.getElementById("reel1"),
+    document.getElementById("reel2"),
+    document.getElementById("reel3")
+];
+
+let spinning = false;
+
+/* ===== 拉桿操作狀態 ===== */
+
+let isDragging = false;
+let startY = 0;
+
+const maxPullDistance = 55;
+const maxPullAngle = 30;
+
+/* ===== 顯示 SVG 圖案 ===== */
+
+function showSymbol(element, symbol) {
+    element.innerHTML = `
+        <svg viewBox="0 0 100 100" role="img"
+             aria-label="${symbolNames[symbol]}">
+            <use href="#${symbol}"></use>
+        </svg>
+    `;
+}
+
+/* ===== 隨機圖案 ===== */
+
+function randomSymbol() {
+    return symbols[Math.floor(Math.random() * symbols.length)];
+}
+
+/* ===== 初始化 ===== */
+
+function init() {
+    reels.forEach(reel => {
+        showSymbol(reel, "strawberry");
+    });
+}
+
+init();
+
+/* ===== 開始拉霸 ===== */
+
+function spin() {
+
+    if (spinning) return;
+
+    spinning = true;
+
+    wrapper.classList.add("spinning");
+    wrapper.classList.remove("jackpot");
+
+    msg.classList.remove("win");
+
+    msg.innerText = "幸運旋轉中...";
+    msg.style.color = "#ed7295";
+
+    const intervals = [];
+    const results = [];
+
+    // 三個轉輪開始快速轉動
+    reels.forEach((reel, index) => {
+
+        const intervalId = setInterval(() => {
+            showSymbol(reel, randomSymbol());
+        }, 70);
+
+        intervals.push(intervalId);
+    });
+
+    // 依序停止：4 秒、4.5 秒、5 秒
+    reels.forEach((reel, index) => {
+
+        const stopTime = 4000 + index * 500;
+
+        setTimeout(() => {
+
+            clearInterval(intervals[index]);
+
+            const finalSymbol = randomSymbol();
+
+            showSymbol(reel, finalSymbol);
+            results[index] = finalSymbol;
+
+            // 三個轉輪全部停止
+            if (results.filter(Boolean).length === 3) {
+
+                wrapper.classList.remove("spinning");
+
+                checkResult(results);
+            }
+
+        }, stopTime);
+    });
+}
+
+/* ===== 中獎判定 ===== */
+
+function checkResult(results) {
+
+    spinning = false;
+
+    const isWin = results.every(
+        symbol => symbol === results[0]
+    );
+
+    if (!isWin) {
+
+        msg.innerText = "差一點點！再試一次吧";
+        msg.style.color = "#a77b90";
+
+        return;
+    }
+
+    const winSymbol = results[0];
+    const name = symbolNames[winSymbol];
+
+    msg.classList.add("win");
+
+    if (winSymbol === "star") {
+
+        wrapper.classList.add("jackpot");
+
+        msg.innerText = "JACKPOT！超級幸運大獎！";
+        msg.style.color = "#d49b42";
+
+    } else if (
+        ["diamond", "crown", "bow"].includes(winSymbol)
+    ) {
+
+        msg.innerText = `恭喜！${name}豪華連線！`;
+        msg.style.color = "#d9577b";
+
+    } else {
+
+        msg.innerText = `恭喜成功連線：${name}！`;
+        msg.style.color = "#75465c";
+    }
+}
+
+/* ===== 拉桿點擊與拖曳操作 ===== */
+
+handle.addEventListener("pointerdown", function(e) {
+
+    if (spinning || isDragging) return;
+
+    e.preventDefault();
+
+    isDragging = true;
+    startY = e.clientY;
+
+    handle.classList.add("dragging");
+
+    // 確保滑鼠移出拉桿範圍後仍能繼續偵測
+    handle.setPointerCapture(e.pointerId);
+});
+
+handle.addEventListener("pointermove", function(e) {
+
+    if (!isDragging || spinning) return;
+
+    e.preventDefault();
+
+    // 計算向下拖曳距離
+    const distance = e.clientY - startY;
+
+    // 限制拖曳距離
+    const pullDistance = Math.max(
+        0,
+        Math.min(distance, maxPullDistance)
+    );
+
+    // 將拖曳距離換算成旋轉角度
+    const angle = (pullDistance / maxPullDistance) * maxPullAngle;
+
+    /*
+       只旋轉，不使用 translateY。
+       因為 transform-origin 設定在底部，
+       所以桿子底部會固定在機身支點。
+    */
+    rod.style.transform = `rotate(${angle}deg)`;
+});
+
+handle.addEventListener("pointerup", function() {
+
+    if (!isDragging) return;
+
+    isDragging = false;
+
+    handle.classList.remove("dragging");
+
+    // 清除拖曳時的 inline transform
+    rod.style.transform = "";
+
+    // 點擊或拖曳放開都會啟動拉霸
+    if (!spinning) {
+        spin();
+    }
+});
+
+handle.addEventListener("pointercancel", function() {
+
+    isDragging = false;
+
+    handle.classList.remove("dragging");
+
+    // 取消拖曳時還原拉桿，不啟動遊戲
+    rod.style.transform = "";
+});
+
+</script>
+
+</body>
+</html>

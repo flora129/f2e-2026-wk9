@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 100" fill="none" stroke="#2b2b2b" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+  <!-- 筆桿 -->
+  <rect x="22" y="5" width="16" height="50" rx="8" fill="#e9a15c"/>
+  <!-- 金屬環 -->
+  <rect x="20" y="52" width="20" height="16" rx="3" fill="#c9d1d6"/>
+  <path d="M20 60 h20" stroke-width="3"/>
+  <!-- 筆毛與顏料 -->
+  <path d="M20 68 h20 q5 16 -10 28 q-15 -12 -10 -28z" fill="#ef476f"/>
+</svg>

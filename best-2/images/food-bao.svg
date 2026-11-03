@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" stroke="#2b2b2b" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+  <!-- 蒸籠墊 -->
+  <ellipse cx="50" cy="84" rx="44" ry="10" fill="#d9b779"/>
+  <!-- 包子 -->
+  <path d="M11 70 Q9 28 50 26 Q91 28 89 70 Q87 84 50 84 Q13 84 11 70Z" fill="#fff7e6"/>
+  <!-- 摺子 -->
+  <path d="M50 30 q-5 9 -3 17 M50 30 q5 9 3 17 M50 30 q-14 6 -18 15 M50 30 q14 6 18 15" stroke-width="3"/>
+  <!-- 腮紅與小臉 -->
+  <circle cx="30" cy="68" r="5.5" fill="#ffc2c2" stroke="none"/>
+  <circle cx="70" cy="68" r="5.5" fill="#ffc2c2" stroke="none"/>
+  <circle cx="41" cy="64" r="2" fill="#2b2b2b" stroke="none"/>
+  <circle cx="59" cy="64" r="2" fill="#2b2b2b" stroke="none"/>
+  <path d="M46 70 q4 4 8 0" stroke-width="3"/>
+</svg>

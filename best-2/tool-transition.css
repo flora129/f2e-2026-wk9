@@ -1,0 +1,31 @@
+.pickme-curtain-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483647;
+  display: grid;
+  place-items: center;
+  background: #fdd070 radial-gradient(rgba(107, 58, 46, .09) 1.4px, transparent 1.7px) 0 0 / 22px 22px;
+  transition: transform 1s cubic-bezier(.76, 0, .24, 1) .1s;
+}
+.pickme-curtain-loader.done { transform: translateY(-112%); }
+.pickme-curtain-loader.done .pickme-curtain-body { opacity: 0; scale: .9; transition: opacity .35s, scale .35s; }
+.pickme-curtain-wave { position: absolute; left: 0; top: 100%; width: 100%; height: 90px; fill: #fdd070; margin-top: -1px; }
+.pickme-curtain-body { display: grid; justify-items: center; gap: 28px; padding: 24px; }
+.pickme-curtain-logo { width: min(520px, 78vw); height: auto; user-select: none; animation: pickme-logo-pop .9s cubic-bezier(.34, 1.56, .64, 1) .1s backwards, pickme-bob 3s ease-in-out 1s infinite; }
+.pickme-curtain-tools { display: flex; gap: clamp(8px, 2vw, 18px); }
+.pickme-curtain-tools img { width: clamp(38px, 7vw, 64px); height: clamp(38px, 7vw, 64px); object-fit: contain; animation: pickme-load-hop 1.2s ease-in-out calc(var(--i) * .14s) infinite; }
+.pickme-curtain-text { font: 22px/1.5 'Huninn', 'Noto Sans TC', 'PingFang TC', sans-serif; letter-spacing: .18em; color: #6b3a2e; }
+.pickme-curtain-text span { animation: pickme-dot-blink 1.2s infinite; }
+.pickme-curtain-text span:nth-child(2) { animation-delay: .2s; }
+.pickme-curtain-text span:nth-child(3) { animation-delay: .4s; }
+.pickme-curtain-loader.done { pointer-events: none; }
+.pickme-curtain-pending body { visibility: hidden; }
+.pickme-curtain-revealing body { visibility: visible; }
+@keyframes pickme-logo-pop { from { opacity: 0; scale: .5; rotate: -8deg; } }
+@keyframes pickme-bob { 0%, 100% { translate: 0 0; } 50% { translate: 0 -8px; } }
+@keyframes pickme-load-hop { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-18px) rotate(-6deg); } }
+@keyframes pickme-dot-blink { 0%, 60%, 100% { opacity: .2; } 30% { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .pickme-curtain-logo, .pickme-curtain-tools img, .pickme-curtain-text span { animation: none !important; }
+  .pickme-curtain-loader { transition-duration: .01s; }
+}

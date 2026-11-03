@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none" stroke="#2b2b2b" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+  <!-- 紙飛機 -->
+  <path d="M90 22 L116 12 L104 38 L99 28Z" fill="#ffffff" stroke-width="3.5"/>
+  <path d="M99 28 L116 12" stroke-width="3"/>
+  <!-- 背包 -->
+  <rect x="26" y="52" width="16" height="32" rx="6" fill="#6fc28b"/>
+  <!-- 腿與鞋 -->
+  <path d="M47 86 L40 108"/>
+  <path d="M58 86 L66 106"/>
+  <path d="M33 109 h13" stroke-width="7"/>
+  <path d="M62 108 h15" stroke-width="7"/>
+  <!-- 身體 -->
+  <rect x="38" y="48" width="26" height="42" rx="11" fill="#ffb347"/>
+  <!-- 拉行李的手 -->
+  <path d="M62 62 L83 72"/>
+  <!-- 頭與頭髮 -->
+  <circle cx="51" cy="30" r="15" fill="#fde8dc"/>
+  <path d="M36 29 Q36 11 51 11 Q66 11 66 29 Q57 21 36 29Z" fill="#3b3f3e"/>
+  <circle cx="46" cy="33" r="1.8" fill="#2b2b2b" stroke="none"/>
+  <circle cx="58" cy="33" r="1.8" fill="#2b2b2b" stroke="none"/>
+  <path d="M48 39 q3 3 6 0" stroke-width="3"/>
+  <!-- 行李箱 -->
+  <path d="M87 72 v-11 h12 v11"/>
+  <rect x="78" y="72" width="32" height="38" rx="6" fill="#ef6f6c"/>
+  <path d="M90 78 v26 M98 78 v26" stroke-width="3"/>
+  <circle cx="86" cy="113" r="3.5" fill="#2b2b2b"/>
+  <circle cx="102" cy="113" r="3.5" fill="#2b2b2b"/>
+</svg>

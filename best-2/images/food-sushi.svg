@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" stroke="#2b2b2b" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+  <!-- 米飯 -->
+  <rect x="14" y="48" width="72" height="34" rx="17" fill="#fff9ee"/>
+  <!-- 魚片 -->
+  <path d="M9 56 Q50 16 91 56 Q86 70 50 70 Q14 70 9 56Z" fill="#ff8b7b"/>
+  <path d="M30 46 q5 8 3 17 M49 38 q5 10 3 24 M68 46 q5 8 3 17" stroke="#fff" stroke-width="3" opacity=".85"/>
+  <!-- 海苔 -->
+  <rect x="44" y="40" width="12" height="44" rx="3" fill="#2f3e46"/>
+</svg>
